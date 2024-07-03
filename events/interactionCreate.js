@@ -1,5 +1,7 @@
 const { Events } = require('discord.js');
 
+
+
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
@@ -23,12 +25,15 @@ module.exports = {
                 await interaction.reply({coontent: 'There was an error while executing this command!', ephemeral: true});
             }
         }
-        const { cooldowns } = interaction.client;
+        
 
-        if (!cooldowns.has(command.data.name)) {
-            cooldowns.set(command.data.name, new Collection());
-        }
+    },
+};
+const { cooldowns } = interaction.client;
 
+if (!cooldowns.has(command.data.name)) {
+    cooldowns.set(command.data.name, new Collection());
+}
         const now = Date.now();
         const timestamps = cooldowns.get(command.data.name);
         const defaultCooldownDuration = 3;
@@ -45,6 +50,4 @@ module.exports = {
 
         timestamps.set(interaction.user.id, now);
         setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
-    },
-};
 
