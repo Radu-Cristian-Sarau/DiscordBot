@@ -12,7 +12,7 @@ for (const folder of commandFolders) {
     // Grab all the command files from the commands directory you created earlier
     const commandsPath = path.join(foldersPath, folder);
     const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-    // Grab the SlashCOmmandBuilder#toJSON() output of each command's data for deployment
+    // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
     for (const file of commandFiles) {
         const filePath = path.join(commandsPath, file);
         const command = require(filePath);
@@ -38,7 +38,7 @@ const rest = new REST().setToken(token);
             {body: commands},
         );
 
-        console.log('Successfully reloaded &{data.length} application (/) commands.');
+        console.log('Successfully reloaded ${data.length} application (/) commands.');
     } catch (error) {
         // And of course, make sure you catch and log any errors!
         console.error(error);
