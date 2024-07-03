@@ -41,5 +41,7 @@ for (const file of eventFiles) {
     }
 }
 
+client.cooldowns = new Collection();
+
 // Log in to Discord with your client's token
 client.login(token);
